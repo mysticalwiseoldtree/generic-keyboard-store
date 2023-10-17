@@ -7,6 +7,7 @@ app.config.from_object(__name__)
 
 # Give green lights to the frontend
 CORS(app, resources={r'/*': {'origins': 'http://localhost:8080', 'allow_headers': 'Access-Control-Allow-Origin'}})
+CORS(app, resources={r'/*': {'origins': 'http://127.0.0.1:8080', 'allow_headers': 'Access-Control-Allow-Origin'}})
 
 ### --- Routes --- ###
 @app.route('/', methods=['GET'])
@@ -19,4 +20,4 @@ def sample_data():
 
 # --- Run App ---
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

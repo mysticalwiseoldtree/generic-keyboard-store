@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import axios from "axios";
-
 // Scripts for the component
+
+import { onMounted, ref } from "vue";
+import { Backend } from "../modules/backend";
+
 const backendMessage = ref("");
 
-onMounted(() => {
-  axios
-    .get("http://127.0.0.1:5000/sampledata")
-    .then((response) => {
-      backendMessage.value = response.data;
-    })
-    .catch((error) => {
-      backendMessage.value = error.message;
-    });
+// Executes when the component is mounted
+onMounted(async () => {
+  // Get data from the backend
+  backendMessage.value = await Backend.get("sampledata");
 });
 </script>
 
