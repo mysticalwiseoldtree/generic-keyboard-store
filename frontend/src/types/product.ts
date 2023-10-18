@@ -3,12 +3,12 @@
  * A product in store has several properties:
  * - Name
  * - Price
- * - Brand
+ * - Category
  * - Image of the product
  */
 export interface Product {
   name: string;
   price: number;
-  brand: string;
+  category: string;
   image: string;
 }

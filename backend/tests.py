@@ -14,20 +14,20 @@ def test_add_entry():
     product = modules.product.Product(
         "Test Product",
         100,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
         "Test Product",
         100.0,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.remove_entry(product)
 
@@ -36,20 +36,20 @@ def test_read_entry():
     product = modules.product.Product(
         "Test Product",
         100,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
         "Test Product",
         100.0,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.remove_entry(product)
 
@@ -58,10 +58,10 @@ def test_update_entry():
     product = modules.product.Product(
         "Test Product",
         100,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.add_entry(product)
     product.name = "Updated Product"
@@ -70,10 +70,10 @@ def test_update_entry():
     assert result == (
         "Updated Product",
         100.0,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.remove_entry(product)
 
@@ -82,10 +82,10 @@ def test_remove_entry():
     product = modules.product.Product(
         "Test Product",
         100,
-        "Test Brand",
+        "Test Category",
         "test_image.png",
         "Test Switch",
-        "test_uniqueid",
+        "test_unique_product_id",
     )
     db.add_entry(product)
     db.remove_entry(product)

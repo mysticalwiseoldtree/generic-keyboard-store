@@ -7,7 +7,7 @@ from uuid import uuid4
 # A product in store has several properties:
 # - Name
 # - Price
-# - Brand
+# - Category
 # - Image of the product
 
 
@@ -15,21 +15,26 @@ class Product:
     def __init__(
         self,
         name: str,
+        description: str,
         price: float,
-        brand: str,
+        category: str,
         image: str,
-        __uniqueid: str = "",
+        __unique_product_id: str = "",
     ):
         self.name = name
+        self.description = description
         self.price = price
-        self.brand = brand
+        self.category = category
         self.image = image
-        self.uniqueid = __uniqueid if __uniqueid != "" else uuid4().hex
+        self.unique_product_id = (
+            __unique_product_id if __unique_product_id != "" else uuid4().hex
+        )
 
 
 # Sample product object
 sample_product = Product(
     "Oppressor Mk II",
+    "Bike that goes in the air and fire homing missiles",
     6000000.69,
     "Warstock Cache & Carry",
     "https://static.wikia.nocookie.net/gtawiki/images/8/85/OppressorMkII-GTAO-front.png",
@@ -46,8 +51,9 @@ class UI_Product(Product):
     def __init__(self, product: Product):
         self.product = Product(
             product.name,
+            product.description,
             product.price,
-            product.brand,
+            product.category,
             product.image,
         )
         self.__quantity: int = 0

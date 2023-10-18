@@ -17,9 +17,9 @@ class ProductDatabase:
             CREATE TABLE IF NOT EXISTS products (
                 name TEXT,
                 price REAL,
-                brand TEXT,
+                category TEXT,
                 image TEXT,
-                uniqueid TEXT
+                unique_product_id TEXT
             )
             """
         )
@@ -28,15 +28,15 @@ class ProductDatabase:
     def add_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            INSERT INTO products (name, price, brand, image, uniqueid)
+            INSERT INTO products (name, price, category, image, unique_product_id)
             VALUES (?, ?, ?, ?, ?)
             """,
             (
                 product.name,
                 product.price,
-                product.brand,
+                product.category,
                 product.image,
-                product.uniqueid,
+                product.unique_product_id,
             ),
         )
         self.connection.commit()
@@ -44,24 +44,24 @@ class ProductDatabase:
     def read_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            SELECT * FROM products WHERE uniqueid = ?
+            SELECT * FROM products WHERE unique_product_id = ?
             """,
-            (product.uniqueid,),
+            (product.unique_product_id,),
         )
         return self.cursor.fetchone()
 
     def update_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            UPDATE products SET name = ?, price = ?, brand = ?, image = ?
-            WHERE uniqueid = ?
+            UPDATE products SET name = ?, price = ?, category = ?, image = ?
+            WHERE unique_product_id = ?
             """,
             (
                 product.name,
                 product.price,
-                product.brand,
+                product.category,
                 product.image,
-                product.uniqueid,
+                product.unique_product_id,
             ),
         )
         self.connection.commit()
@@ -69,8 +69,8 @@ class ProductDatabase:
     def remove_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            DELETE FROM products WHERE uniqueid = ?
+            DELETE FROM products WHERE unique_product_id = ?
             """,
-            (product.uniqueid,),
+            (product.unique_product_id,),
         )
         self.connection.commit()
