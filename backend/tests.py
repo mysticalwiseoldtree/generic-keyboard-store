@@ -2,7 +2,7 @@
 Tests for modules.
 """
 
-import modules.keyboards
+import backend.modules.product
 from modules.product_database import ProductDatabase
 
 
@@ -11,8 +11,8 @@ db = ProductDatabase()
 
 
 def test_add_entry():
-    product = modules.keyboards.Keyboard(
-        "Test Keyboard",
+    product = modules.product.Product(
+        "Test Product",
         100,
         "Test Brand",
         "test_image.png",
@@ -22,7 +22,7 @@ def test_add_entry():
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
-        "Test Keyboard",
+        "Test Product",
         100.0,
         "Test Brand",
         "test_image.png",
@@ -33,8 +33,8 @@ def test_add_entry():
 
 
 def test_read_entry():
-    product = modules.keyboards.Keyboard(
-        "Test Keyboard",
+    product = modules.product.Product(
+        "Test Product",
         100,
         "Test Brand",
         "test_image.png",
@@ -44,7 +44,7 @@ def test_read_entry():
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
-        "Test Keyboard",
+        "Test Product",
         100.0,
         "Test Brand",
         "test_image.png",
@@ -55,8 +55,8 @@ def test_read_entry():
 
 
 def test_update_entry():
-    product = modules.keyboards.Keyboard(
-        "Test Keyboard",
+    product = modules.product.Product(
+        "Test Product",
         100,
         "Test Brand",
         "test_image.png",
@@ -64,11 +64,11 @@ def test_update_entry():
         "test_uniqueid",
     )
     db.add_entry(product)
-    product.name = "Updated Keyboard"
+    product.name = "Updated Product"
     db.update_entry(product)
     result = db.read_entry(product)
     assert result == (
-        "Updated Keyboard",
+        "Updated Product",
         100.0,
         "Test Brand",
         "test_image.png",
@@ -79,8 +79,8 @@ def test_update_entry():
 
 
 def test_remove_entry():
-    product = modules.keyboards.Keyboard(
-        "Test Keyboard",
+    product = modules.product.Product(
+        "Test Product",
         100,
         "Test Brand",
         "test_image.png",

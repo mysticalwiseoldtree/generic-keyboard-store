@@ -1,6 +1,6 @@
 from flask import Flask, json
 from flask_cors import CORS
-from modules import keyboards
+from modules import product
 
 ### --- App Config --- ###
 app = Flask(__name__)
@@ -33,9 +33,9 @@ def index():
     return '<h1 style="margin: 15%; text-align: center;">Hello fellow traveller I think you went the wrong way</h1>'
 
 
-@app.route("/samplekeyboard", methods=["GET"])
-def sample_keyboard():
-    return json.dumps(keyboards.sample_keyboard.__dict__)
+@app.route("/sampleproduct", methods=["GET"])
+def sample_product():
+    return json.dumps(product.sample_product.__dict__)
 
 
 # --- Run App ---

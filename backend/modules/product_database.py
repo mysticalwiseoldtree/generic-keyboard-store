@@ -1,5 +1,5 @@
 import sqlite3
-import modules.keyboards as keyboards
+import backend.modules.product as product
 
 """
 Database management system for management of products.
@@ -14,48 +14,46 @@ class ProductDatabase:
         self.cursor = self.connection.cursor()
         self.cursor.execute(
             """
-            CREATE TABLE IF NOT EXISTS keyboards (
+            CREATE TABLE IF NOT EXISTS products (
                 name TEXT,
                 price REAL,
                 brand TEXT,
                 image TEXT,
-                switch_type TEXT,
                 uniqueid TEXT
             )
             """
         )
         self.connection.commit()
 
-    def add_entry(self, product: keyboards.Keyboard):
+    def add_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            INSERT INTO keyboards (name, price, brand, image, switch_type, uniqueid)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO products (name, price, brand, image, uniqueid)
+            VALUES (?, ?, ?, ?, ?)
             """,
             (
                 product.name,
                 product.price,
                 product.brand,
                 product.image,
-                product.switch_type,
                 product.uniqueid,
             ),
         )
         self.connection.commit()
 
-    def read_entry(self, product: keyboards.Keyboard):
+    def read_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            SELECT * FROM keyboards WHERE uniqueid = ?
+            SELECT * FROM products WHERE uniqueid = ?
             """,
             (product.uniqueid,),
         )
         return self.cursor.fetchone()
 
-    def update_entry(self, product: keyboards.Keyboard):
+    def update_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            UPDATE keyboards SET name = ?, price = ?, brand = ?, image = ?, switch_type = ?
+            UPDATE products SET name = ?, price = ?, brand = ?, image = ?
             WHERE uniqueid = ?
             """,
             (
@@ -63,16 +61,15 @@ class ProductDatabase:
                 product.price,
                 product.brand,
                 product.image,
-                product.switch_type,
                 product.uniqueid,
             ),
         )
         self.connection.commit()
 
-    def remove_entry(self, product: keyboards.Keyboard):
+    def remove_entry(self, product: product.Product):
         self.cursor.execute(
             """
-            DELETE FROM keyboards WHERE uniqueid = ?
+            DELETE FROM products WHERE uniqueid = ?
             """,
             (product.uniqueid,),
         )
