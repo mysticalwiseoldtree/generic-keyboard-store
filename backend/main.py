@@ -13,7 +13,7 @@ CORS(app, resources={r'/*': {'origins': 'http://127.0.0.1:8080', 'allow_headers'
 ### --- Routes --- ###
 @app.route('/', methods=['GET'])
 def index():
-    return 'Hello World!'
+    return '<h1 style="margin: 15%; text-align: center;">Hello fellow traveller I think you went the wrong way</h1>'
 
 @app.route('/samplekeyboard', methods=['GET'])
 def sample_keyboard():
