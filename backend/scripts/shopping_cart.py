@@ -6,8 +6,8 @@ import keyboards
 
 
 class ShoppingCart:
-    def __init__(self):
-        self.__items: list[keyboards.UI_Keyboard] = []
+    def __init__(self, cart_items: list[keyboards.UI_Keyboard] = []):
+        self.__items: list[keyboards.UI_Keyboard] = cart_items
 
     @property
     def total_price(self) -> float:
