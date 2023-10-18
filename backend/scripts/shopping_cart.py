@@ -1,8 +1,8 @@
-import keyboards
+"""
+The shopping cart. Manages the items in the cart and calculates the total price.
+"""
 
-"""
-This class is used to store the items that the user has added to their shopping cart.
-"""
+import keyboards
 
 
 class ShoppingCart:
