@@ -2,6 +2,8 @@
 Keyboard product class and its shopping cart variant
 """
 
+from uuid import uuid4
+
 # A keyboard product in store has several properties:
 # - Name
 # - Price
@@ -12,13 +14,20 @@ Keyboard product class and its shopping cart variant
 
 class Keyboard:
     def __init__(
-        self, name: str, price: float, brand: str, image: str, switch_type: str
+        self,
+        name: str,
+        price: float,
+        brand: str,
+        image: str,
+        switch_type: str,
+        __uniqueid: str = "",
     ):
         self.name = name
         self.price = price
         self.brand = brand
         self.image = image
         self.switch_type = switch_type
+        self.uniqueid = __uniqueid if __uniqueid != "" else uuid4().hex
 
 
 # Sample keyboard object

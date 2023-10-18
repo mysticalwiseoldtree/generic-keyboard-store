@@ -1,6 +1,6 @@
 from flask import Flask, json
 from flask_cors import CORS
-from scripts import keyboards
+from modules import keyboards
 
 ### --- App Config --- ###
 app = Flask(__name__)
