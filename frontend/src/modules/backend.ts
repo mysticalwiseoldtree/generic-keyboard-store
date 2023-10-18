@@ -16,8 +16,8 @@ export class Backend {
    * @param url The URL to send the request to.
    * @returns The response from the backend.
    */
-  static async get(url: string): Promise<string> {
+  static async get<T>(url: string): Promise<T> {
     const response = await axios.get(this.baseURL() + url);
-    return response.data as string;
+    return response.data as T;
   }
 }

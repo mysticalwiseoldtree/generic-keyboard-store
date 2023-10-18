@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, json
 from flask_cors import CORS
+from scripts import keyboards;
 
 ### --- App Config --- ###
 app = Flask(__name__)
@@ -14,9 +15,9 @@ CORS(app, resources={r'/*': {'origins': 'http://127.0.0.1:8080', 'allow_headers'
 def index():
     return 'Hello World!'
 
-@app.route('/sampledata', methods=['GET'])
-def sample_data():
-    return 'This message is from the backend!'
+@app.route('/samplekeyboard', methods=['GET'])
+def sample_keyboard():
+    return json.dumps(keyboards.sample_keyboard.__dict__);
 
 # --- Run App ---
 if __name__ == '__main__':
