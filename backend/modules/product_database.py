@@ -1,5 +1,7 @@
-import sqlite3
-import backend.modules.product as product
+import pymongo
+
+import dns
+import modules.product as product
 
 """
 Database management system for management of products.
@@ -10,67 +12,45 @@ and disconnected when class is no longer in use.
 
 class ProductDatabase:
     def __init__(self):
-        self.connection = sqlite3.connect("products_database.db")
-        self.cursor = self.connection.cursor()
-        self.cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS products (
-                name TEXT,
-                price REAL,
-                category TEXT,
-                image TEXT,
-                unique_product_id TEXT
-            )
-            """
-        )
-        self.connection.commit()
+        # Connect to MongoDB
+        self.client = pymongo.MongoClient("127.0.0.1", 27017)
+        self.db = self.client["KayBee"]
+        self.collection = self.db["products"]
 
     def add_entry(self, product: product.Product):
-        self.cursor.execute(
-            """
-            INSERT INTO products (name, price, category, image, unique_product_id)
-            VALUES (?, ?, ?, ?, ?)
-            """,
-            (
-                product.name,
-                product.price,
-                product.category,
-                product.image,
-                product.unique_product_id,
-            ),
+        # Insert a new document into the collection
+        self.collection.insert_one(
+            {
+                "name": product.name,
+                "description": product.description,
+                "price": product.price,
+                "category": product.category,
+                "image": product.image,
+                "unique_product_id": product.unique_product_id,
+            }
         )
-        self.connection.commit()
 
     def read_entry(self, product: product.Product):
-        self.cursor.execute(
-            """
-            SELECT * FROM products WHERE unique_product_id = ?
-            """,
-            (product.unique_product_id,),
+        # Find a document in the collection by unique_product_id
+        return self.collection.find_one(
+            {"unique_product_id": product.unique_product_id}
         )
-        return self.cursor.fetchone()
 
     def update_entry(self, product: product.Product):
-        self.cursor.execute(
-            """
-            UPDATE products SET name = ?, price = ?, category = ?, image = ?
-            WHERE unique_product_id = ?
-            """,
-            (
-                product.name,
-                product.price,
-                product.category,
-                product.image,
-                product.unique_product_id,
-            ),
+        # Update a document in the collection by unique_product_id
+        self.collection.update_one(
+            {"unique_product_id": product.unique_product_id},
+            {
+                "$set": {
+                    "name": product.name,
+                    "description": product.description,
+                    "price": product.price,
+                    "category": product.category,
+                    "image": product.image,
+                }
+            },
         )
-        self.connection.commit()
 
     def remove_entry(self, product: product.Product):
-        self.cursor.execute(
-            """
-            DELETE FROM products WHERE unique_product_id = ?
-            """,
-            (product.unique_product_id,),
-        )
-        self.connection.commit()
+        # Remove a document from the collection by unique_product_id
+        self.collection.delete_one({"unique_product_id": product.unique_product_id})

@@ -2,7 +2,7 @@
 Tests for modules.
 """
 
-import backend.modules.product
+import modules.product
 from modules.product_database import ProductDatabase
 
 
@@ -13,21 +13,21 @@ db = ProductDatabase()
 def test_add_entry():
     product = modules.product.Product(
         "Test Product",
+        "Test Description",
         100,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
         "Test Product",
+        "Test Description",
         100.0,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.remove_entry(product)
 
@@ -35,21 +35,21 @@ def test_add_entry():
 def test_read_entry():
     product = modules.product.Product(
         "Test Product",
+        "Test Description",
         100,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.add_entry(product)
     result = db.read_entry(product)
     assert result == (
         "Test Product",
+        "Test Description",
         100.0,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.remove_entry(product)
 
@@ -57,11 +57,11 @@ def test_read_entry():
 def test_update_entry():
     product = modules.product.Product(
         "Test Product",
+        "Test Description",
         100,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.add_entry(product)
     product.name = "Updated Product"
@@ -69,11 +69,11 @@ def test_update_entry():
     result = db.read_entry(product)
     assert result == (
         "Updated Product",
+        "Test Description",
         100.0,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.remove_entry(product)
 
@@ -81,11 +81,11 @@ def test_update_entry():
 def test_remove_entry():
     product = modules.product.Product(
         "Test Product",
+        "Test Description",
         100,
         "Test Category",
         "test_image.png",
-        "Test Switch",
-        "test_unique_product_id",
+        "test_uniqueid",
     )
     db.add_entry(product)
     db.remove_entry(product)
