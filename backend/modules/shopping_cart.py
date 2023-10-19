@@ -1,11 +1,12 @@
-"""
-The shopping cart. Manages the items in the cart and calculates the total price.
-"""
-
 import backend.modules.product as product
 
 
 class ShoppingCart:
+    """
+    The shopping cart. Manages the items in
+    the cart and calculates the total price.
+    """
+
     def __init__(self, cart_items: list[product.UI_Product] = []):
         self.__items: list[product.UI_Product] = cart_items
 

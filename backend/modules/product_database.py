@@ -3,14 +3,14 @@ import pymongo
 import dns
 import modules.product as product
 
-"""
-Database management system for management of products.
-Database is connected when the class is initialized,
-and disconnected when class is no longer in use.
-"""
-
 
 class ProductDatabase:
+    """
+    Database management system for management of products.
+    Database is connected when the class is initialized,
+    and disconnected when class is no longer in use.
+    """
+
     def __init__(self):
         # Connect to MongoDB
         self.client = pymongo.MongoClient("127.0.0.1", 27017)
