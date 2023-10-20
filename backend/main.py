@@ -11,16 +11,7 @@ CORS(
     app,
     resources={
         r"/*": {
-            "origins": "http://localhost:8080",
-            "allow_headers": "Access-Control-Allow-Origin",
-        }
-    },
-)
-CORS(
-    app,
-    resources={
-        r"/*": {
-            "origins": "http://127.0.0.1:8080",
+            "origins": ["http://localhost:8080", "http://127.0.0.1:8080"],
             "allow_headers": "Access-Control-Allow-Origin",
         }
     },
@@ -30,7 +21,11 @@ CORS(
 ### --- Routes --- ###
 @app.route("/", methods=["GET"])
 def index():
-    return '<h1 style="margin: 15%; text-align: center;">Hello fellow traveller I think you went the wrong way</h1>'
+    return """
+    <h1 style="margin: 10%; text-align: center; font-family: Arial;">
+        Hello fellow traveller I think you went the wrong way
+    </h1>
+    """
 
 
 @app.route("/sampleproduct", methods=["GET"])
