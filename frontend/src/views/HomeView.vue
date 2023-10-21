@@ -20,6 +20,7 @@ onMounted(async () => {
     <div class="product-entry">
       <img :src="backendMessage?.image" alt="product image" />
       <h3>Name: {{ backendMessage?.name }}</h3>
+      <h3>Description: {{ backendMessage?.description }}</h3>
       <h3>Category: {{ backendMessage?.category }}</h3>
       <h3>Price: {{ backendMessage?.price }}</h3>
     </div>
