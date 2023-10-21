@@ -13,7 +13,7 @@ class Product:
     - Category
     - Image of the product
     """
-
+    
     def __init__(
         self,
         name: str,
@@ -21,16 +21,14 @@ class Product:
         price: float,
         category: str,
         image: str,
-        __unique_product_id: str = "",
+        __unique_id: str = "",
     ):
         self.name = name
         self.description = description
         self.price = price
         self.category = category
         self.image = image
-        self.unique_product_id = (
-            __unique_product_id if __unique_product_id != "" else uuid4().hex
-        )
+        self.unique_id = __unique_id if __unique_id != "" else uuid4().hex
 
 
 # Sample product object
