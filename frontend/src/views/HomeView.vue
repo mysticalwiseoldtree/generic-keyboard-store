@@ -3,7 +3,7 @@
 
 import { onMounted, ref } from 'vue'
 import { Backend } from '../modules/backend'
-import { Product } from '../types/product'
+import type { Product } from '../types/product';
 
 const backendMessage = ref<Product>()
 
