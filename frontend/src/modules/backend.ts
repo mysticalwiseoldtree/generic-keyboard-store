@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 /**
  * Backend class for making requests to the backend.
@@ -8,7 +8,7 @@ export class Backend {
    * Resolves the base URL of the backend.
    */
   static baseURL(): string {
-    return "http://127.0.0.1:5000/";
+    return 'http://127.0.0.1:5000/'
   }
 
   /**
@@ -17,7 +17,7 @@ export class Backend {
    * @returns The response from the backend.
    */
   static async get<T>(url: string): Promise<T> {
-    const response = await axios.get(this.baseURL() + url);
-    return response.data as T;
+    const response = await axios.get(this.baseURL() + url)
+    return response.data as T
   }
 }

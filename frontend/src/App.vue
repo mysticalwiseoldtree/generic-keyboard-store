@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Scripts for the component
-import { RouterView } from "vue-router";
+import { RouterView } from 'vue-router'
 </script>
 
 <template>

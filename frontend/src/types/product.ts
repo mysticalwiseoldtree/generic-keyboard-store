@@ -7,8 +7,8 @@
  * - Image of the product
  */
 export interface Product {
-  name: string;
-  price: number;
-  category: string;
-  image: string;
+  name: string
+  price: number
+  category: string
+  image: string
 }

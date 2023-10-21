@@ -1,17 +1,17 @@
 <script setup lang="ts">
 // Scripts for the component
 
-import { onMounted, ref } from "vue";
-import { Backend } from "../modules/backend";
-import { Product } from "../types/product";
+import { onMounted, ref } from 'vue'
+import { Backend } from '../modules/backend'
+import { Product } from '../types/product'
 
-const backendMessage = ref<Product>();
+const backendMessage = ref<Product>()
 
 // Executes when the component is mounted
 onMounted(async () => {
   // Get data from the backend
-  backendMessage.value = await Backend.get<Product>("sampleproduct");
-});
+  backendMessage.value = await Backend.get<Product>('sampleproduct')
+})
 </script>
 
 <template>
